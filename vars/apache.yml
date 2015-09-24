@@ -1,0 +1,24 @@
+---
+
+apache_repository: false
+
+apache_install:
+  - apache2
+
+apache_module_disable: false
+apache_module_enable:
+  - rewrite
+
+apache_site_disable:
+  - 000-default
+  - default-ssl
+
+apache_site_enable:
+  - "{{ crm_domain }}"
+
+apache_vhosts:
+  - servername: "{{ crm_domain }}"
+    index: app.php
+    documentroot: "{{ crm_current_root }}/web"
+    directory_extra:
+      - RewriteEngine On

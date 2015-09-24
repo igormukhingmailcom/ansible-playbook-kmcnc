@@ -1,0 +1,7 @@
+---
+
+ssh_known_hosts_path: /etc/ssh/ssh_known_hosts
+
+ssh_known_hosts:
+  - github.com
+  - bitbucket.org

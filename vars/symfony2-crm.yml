@@ -1,0 +1,59 @@
+---
+
+# CRM
+# crm_secret: mandatory
+# crm_password: mandatory
+# crm_domain: mandatory
+
+crm_enabled: false
+crm_environment: prod
+crm_release: 1
+
+crm_name: crm
+crm_locale: en
+crm_repo: http://github.com/orocrm/crm-application.git
+crm_branch: 1.7.4
+crm_root: "/var/www/{{ client_slug }}/{{ crm_name }}"
+crm_current_root: "{{ crm_root }}/current"
+crm_shared_root: "{{ crm_root }}/shared"
+crm_release_root: "{{ crm_root }}/releases/{{ crm_release }}"
+
+crm_database_name: "{{ client_slug }}_crm"
+crm_database_user: "{{ client_slug }}_crm"
+crm_database_password: "{{ mysql_root_password }}"
+
+crm_organization_name: "{{ client_organization }}"
+crm_user_name: admin
+crm_user_firstname: "{{ client_name }}"
+crm_user_lastname: "{{ client_lastname }}"
+crm_user_email: '{{ client_email }}'
+
+crm_console_commands:
+  - 'oro:install --force --application-url="{{ crm_domain }}" --organization-name="{{ crm_organization_name }}" --user-name="{{ crm_user_name }}" --user-email="{{ crm_user_email }}" --user-firstname="{{ crm_user_firstname }}" --user-lastname="{{ crm_user_lastname }}" --user-password="{{ crm_password }}" --sample-data=false'
+  - "cache:clear --no-warmup"
+
+crm_parameters_update: false
+crm_parameters:
+  database_driver: "{{ symfony2_database_driver }}"
+  database_host: "{{ symfony2_database_host }}"
+  database_port: "{{ symfony2_database_port }}"
+  database_name: "{{ crm_database_name }}"
+  database_user: "{{ crm_database_user }}"
+  database_password: "{{ crm_database_password }}"
+
+  mailer_transport: smtp
+  mailer_host: "{{ mailer_host }}"
+  mailer_user: "{{ mailer_user }}"
+  mailer_password: "{{ mailer_password }}"
+  mailer_port: "{{ mailer_port }}"
+  mailer_encryption: "null"
+
+  locale: "{{ crm_locale }}"
+  secret: "{{ crm_secret }}"
+
+  session_handler: session.handler.native_file
+  installed: '2015-01-01T01:00:00+00:00'
+
+  # 1.6.x
+  websocket_host: 127.0.0.1
+  websocket_port: 8080

@@ -1,0 +1,4 @@
+---
+
+ntp_enabled: true
+ntp_timezone: Europe/Kiev

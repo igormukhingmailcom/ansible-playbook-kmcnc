@@ -1,0 +1,22 @@
+---
+
+# Common
+ntp_timezone: # @see http://php.net/manual/en/timezones.php
+composer_github_oauth: # Github oauth token
+mailer_password: # Mandrill api key
+mysql_root_password:
+
+# Client data
+client_name:
+client_lastname:
+client_organization:
+client_slug: # Slugified organization
+client_email:
+
+# App: CRM
+crm_enabled: true
+crm_branch: dev-master
+crm_secret: # Random string
+crm_password: # Password
+crm_domain: # Application domain
+# crm_parameters_update: true

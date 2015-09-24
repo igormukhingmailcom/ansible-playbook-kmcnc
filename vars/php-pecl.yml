@@ -1,0 +1,21 @@
+---
+
+php_pecl_extensions: false
+
+php_pecl_apt_packages:
+  - php-pear
+  - php-apc
+  - php5-dev
+  - php5-curl
+  - php5-gd
+  - php5-intl
+  - php5-mcrypt
+  - php5-oauth
+
+php_pecl_modules_enable:
+  - apc
+  - curl
+  - gd
+  - intl
+  - mcrypt
+  - oauth

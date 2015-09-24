@@ -1,0 +1,4 @@
+---
+
+crm_cron_jobs:
+  - '* * * * * www-data {{ symfony2_php_path }} {{ crm_current_root }}/app/console --env={{ crm_environment }} oro:cron'

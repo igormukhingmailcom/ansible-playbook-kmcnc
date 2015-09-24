@@ -1,0 +1,6 @@
+---
+
+postfix_relayhost: "[{{ mailer_host }}]:{{ mailer_port }}"
+postfix_smtp_sasl_user: "{{ mailer_user }}"
+postfix_smtp_sasl_password: "{{ mailer_password }}"
+postfix_send_test_mail_to: "{{ client_email }}"

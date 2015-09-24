@@ -1,0 +1,40 @@
+$VM_BOX = ENV.has_key?('VM_BOX') ? ENV['VM_BOX'] : 'ubuntu/trusty64'
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.box = $VM_BOX
+
+    config.vm.network "private_network", ip: "192.168.2.2"
+    # config.vm.network "forwarded_port", guest: 80, host: 82
+
+    config.vm.provider "virtualbox" do |virtualbox|
+        virtualbox.memory = 2048
+        virtualbox.cpus = 1
+    end
+
+    config.vm.provision :ansible do |ansible|
+        ansible.playbook = '../playbook.yml'
+        ansible.extra_vars = {
+            ansible_ssh_user: 'vagrant',
+            vagrant: true,
+
+            mysql_root_password: 'mysqlrootpassword',
+            composer_github_oauth: 'githuboauth',
+            mailer_password: 'mandrill_api_key',
+            client_name: 'John',
+            client_lastname: 'Doe',
+            client_organization: 'Vagrant',
+            client_slug: 'vagrant',
+            client_email: 'test@vagrant.com',
+
+            # CRM
+            crm_enabled: true,
+            crm_secret: 'crmsecret',
+            crm_password: 'crmpassword',
+            crm_domain: 'vagrant-crm.com',
+            # crm_parameters_update: true
+        }
+        ansible.verbose = 'vv'
+    end
+end

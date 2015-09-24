@@ -1,0 +1,11 @@
+---
+
+apt_cache_valid_time: 3600
+apt_upgrade: true
+apt_upgrade_type: safe # safe, full or dist
+apt_install:
+  - python-apt
+  - unattended-upgrades
+
+apt_install_repositories: false
+apt_remove_repositories: false

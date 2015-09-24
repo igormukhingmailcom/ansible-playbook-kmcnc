@@ -1,0 +1,14 @@
+---
+
+symfony2_environment: prod
+
+symfony2_php_path: /usr/bin/php
+
+symfony2_composer_path: "{{ composer_path }}"
+symfony2_composer_options: "--no-dev --optimize-autoloader"
+
+symfony2_console_options: --no-interaction
+
+symfony2_database_driver: pdo_mysql
+symfony2_database_host: "127.0.0.1"
+symfony2_database_port: "3306"

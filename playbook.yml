@@ -1,0 +1,140 @@
+---
+
+- name: Config server
+  hosts: all
+  sudo: yes
+
+  vars_files:
+    - vars/common.yml
+
+    # System
+    - vars/swapfile.yml
+    - vars/ssh_known_hosts.yml
+    - vars/ntp.yml
+
+    # VCS
+    - vars/git.yml
+
+    # Services for app
+    - vars/apt.yml
+    - vars/mysql.yml
+    - vars/php.yml
+    - vars/php-pecl.yml
+    - vars/composer.yml
+    - vars/apache.yml
+
+    # App
+    - vars/symfony2.yml
+    - vars/symfony2-crm.yml
+    - vars/cron.yml
+
+    # Security
+    - vars/iptables.yml
+
+    # Email
+    - vars/postfix.yml
+
+  roles:
+
+    # System
+    - role: kamaln7.swapfile
+      tags:
+        - provision
+        - swap
+      where: not vagrant
+
+    - role: geerlingguy.ntp
+      tags:
+        - provision
+        - ntp
+
+    # Git
+    - role: igor_mukhin.ssh_known_hosts
+      tags:
+        - provision
+        - git
+        - ssh_known_hosts
+
+    - role: geerlingguy.git
+      tags:
+        - provision
+        - git
+
+    # Stack
+    - role: kosssi.apt
+      tags:
+        - provision
+        - apt
+
+    - role: kosssi.php
+      tags:
+        - provision
+        - php
+
+    - role: igor_mukhin.php_pecl
+      tags:
+        - provision
+        - php
+        - pecl
+
+    - role: geerlingguy.mysql
+      tags:
+        - provision
+        - deploy
+        - mysql
+
+    - role: kosssi.composer
+      tags:
+        - provision
+        - composer
+
+    # CRM
+    - role: igor_mukhin.symfony2
+
+      symfony2_parameters_update: "{{ crm_parameters_update }}"
+      symfony2_deploy_strategy: git
+      symfony2_branch: "{{ crm_branch }}"
+      symfony2_repo: "{{ crm_repo }}"
+
+      symfony2_release: "{{ crm_release }}"
+      symfony2_name: "{{ crm_name }}"
+      symfony2_domain: "{{ crm_domain }}"
+      symfony2_root: "{{ crm_root }}"
+      symfony2_current_root: "{{ crm_current_root }}"
+      symfony2_release_root: "{{ crm_release_root }}"
+      symfony2_shared_root: "{{ crm_shared_root }}"
+      symfony2_parameters: "{{ crm_parameters }}"
+      symfony2_console_commands: "{{ crm_console_commands }}"
+      tags:
+        - deploy
+        - crm
+      when: crm_enabled
+
+    - role: igor_mukhin.cron
+      cron_jobs_group: crm
+      cron_jobs: "{{ crm_cron_jobs }}"
+      tags:
+        - deploy
+        - crm
+        - cron
+      when: crm_enabled
+
+    - role: kosssi.apache
+      tags:
+        - provision
+        - deploy
+        - apache
+
+    # Security
+    - role: Stouts.iptables
+      tags:
+        - provision
+        - security
+        - iptables
+
+    # Email
+    - role: Stouts.postfix
+      tags:
+        - provision
+        - email
+        - postfix

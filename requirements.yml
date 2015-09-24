@@ -1,0 +1,51 @@
+---
+
+# System settings
+- src: ANXS.hostname
+  version: v1.1.0
+
+- src: kamaln7.swapfile
+
+- src: geerlingguy.ntp
+  version: 1.0.2
+
+# Git
+- src: igor_mukhin.ssh_known_hosts
+  version: v0.2.0
+
+- src: geerlingguy.git
+  version: 1.0.4
+
+# Email
+- src: Stouts.postfix
+  version: 3.0.2
+
+# Stack
+- src: kosssi.apt
+  version: v2.0.0
+
+- src: kosssi.php
+  version: v1.1.0
+
+- src: igor_mukhin.php_pecl
+  version: v0.1.1
+
+- src: kosssi.composer
+  version: v1.4.0
+
+- src: geerlingguy.mysql
+  version: 1.4.2
+
+- src: kosssi.apache
+  version: v1.0.3
+
+# App
+- src: igor_mukhin.symfony2
+  version: v0.4.0
+
+- src: igor_mukhin.cron
+  version: v0.1.0
+
+# Security
+- src: Stouts.iptables
+  version: 1.0.9

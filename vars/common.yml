@@ -1,0 +1,17 @@
+---
+
+# mysql_root_password: mandatory
+# composer_github_oauth: mandatory
+
+# Client data
+client_name: "Name"
+client_lastname: "Lastname"
+client_organization: "Organization"
+# client_slug: mandatory
+# client_email: mandatory
+
+# Mailer
+mailer_host: smtp.mandrillapp.com
+mailer_user: "{{ client_email }}"
+# mailer_password: mandatory
+mailer_port: 587
