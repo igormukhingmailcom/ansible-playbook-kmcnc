@@ -83,6 +83,12 @@
         - deploy
         - mysql
 
+    - role: geerlingguy.php-mysql
+      tags:
+        - provision
+        - php
+        - mysql
+
     - role: kosssi.composer
       tags:
         - provision

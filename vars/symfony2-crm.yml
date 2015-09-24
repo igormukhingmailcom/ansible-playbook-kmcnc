@@ -54,6 +54,6 @@ crm_parameters:
   session_handler: session.handler.native_file
   installed: '2015-01-01T01:00:00+00:00'
 
-  # 1.6.x
+  # 1.6.x-1.7.x
   websocket_host: 127.0.0.1
   websocket_port: 8080

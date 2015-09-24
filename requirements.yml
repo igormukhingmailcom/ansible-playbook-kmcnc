@@ -1,9 +1,6 @@
 ---
 
 # System settings
-- src: ANXS.hostname
-  version: v1.1.0
-
 - src: kamaln7.swapfile
 
 - src: geerlingguy.ntp
@@ -29,6 +26,9 @@
 
 - src: igor_mukhin.php_pecl
   version: v0.1.1
+
+- src: geerlingguy.php-mysql
+  version: 1.1.7
 
 - src: kosssi.composer
   version: v1.4.0
